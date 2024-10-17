@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "ecommerce",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
@@ -26,7 +26,7 @@
     "test-watch": "jest --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "JeanFab0307",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -54,5 +54,13 @@
       "\\.(jpg|jpeg|png|gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
     }
   },
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeanFab0307/E-commerce_computer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JeanFab0307/E-commerce_computer/issues"
+  },
+  "homepage": "https://github.com/JeanFab0307/E-commerce_computer#readme"
 }
