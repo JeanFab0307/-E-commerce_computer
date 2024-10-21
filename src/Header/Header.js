@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import { NavItem } from './NavItem';
@@ -12,17 +13,16 @@ class Header extends React.Component {
     return (
       <div className={css(styles.header)}>
         <div>
-          <a href="#">
+          <Link to="/">
             <img className={css(styles.logo)} src='' alt='Logo' />
-          </a>
+          </Link>
         </div>
         <div>
           <nav>
             <ul className={css(styles.navBar)}>
-              <NavItem link='#' name='Home'/>
-              <NavItem link='#Product' name='Products'/>
-              <NavItem link='#Profil' name='Profil'/>
-              <NavItem link='#ContactUs' name='Contact Us'/>
+              <NavItem link='/' name='Home'/>
+              <NavItem link='/profil' name='Profil'/>
+              <NavItem link='/cart' name='Cart'/>
             </ul>
           </nav>
         </div>
@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: 'black'
+    Color: 'black',
+    borderBottom: 'solid 2px grey',
   },
   logo: {
     height: '75px'
