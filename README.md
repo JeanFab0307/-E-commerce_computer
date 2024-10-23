@@ -32,12 +32,13 @@
 
 3. **Start the development servers:**
 ```sh
-npm run start
+  npm run start
+```
 
 4. **Build the application:**
 ```sh
 npm run build
-
+```
 
 ## Contributing
 We welcome contributions from the community! To contribute, please follow these steps:
@@ -65,5 +66,5 @@ git push origin feature-branch
 ## License
 -
 
-## Authors
+## Author
 Jean Fabrice RANDRIATSIMIVONY
