@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import ProductCard from './ProductCard';
-import { ProductItemShape } from './ProductItemShape';
+// import { ProductItemShape } from './ProductItemShape';
 import { Link } from 'react-router-dom';
 
 class ProductsPreview extends React.Component {
@@ -14,16 +14,11 @@ class ProductsPreview extends React.Component {
     const { listProducts } = this.props
     return (
       <>
-        {listProducts.map(({_id, name, description, ram, cpu, storage, price}) => (
-          <Link key={_id} className={css(styles.card, styles.hover) } to={`/product/${_id}`}>
+        {listProducts.map((product) => (
+          <Link key={product.id} className={css(styles.card, styles.hover) } to={`/product/${product.id}`}>
             <div>
               <ProductCard
-              name={name}
-              description={description}
-              cpu={cpu}
-              storage={storage}
-              price={price}
-              ram={ram}
+              product={product}
               />
             </div>
           </Link>
@@ -33,9 +28,9 @@ class ProductsPreview extends React.Component {
   }
 }
 
-ProductsPreview.propTypes = {
-  listProducts: PropTypes.arrayOf(PropTypes.shape(ProductItemShape))
-}
+// ProductsPreview.propTypes = {
+//   listProducts: PropTypes.arrayOf(PropTypes.shape(ProductItemShape))
+// }
 
 const styles = StyleSheet.create({
   card: {

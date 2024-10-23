@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import NavItem from './NavItem';
-// import logo from '../assets/logo-white.png';
+import logo from '../assets/logo.png';
 import {
   SvgHome,
   SvgCart,
@@ -18,12 +18,11 @@ class Header extends React.Component {
   }
 
   render() {
-    const {toogleDrawer} = this.props;
     return (
       <div className={css(styles.header)}>
         <div>
           <Link to="/">
-            <img className={css(styles.logo)} src='{logo}' alt='Logo' />
+            <img className={css(styles.logo)} src={logo} alt='Logo' />
           </Link>
         </div>
         <div>

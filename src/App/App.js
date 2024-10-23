@@ -6,16 +6,16 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import ProductsPreview from '../Products/ProductPreview';
-import cardImage from '../assets/phone.jpeg'
+import cardImage from '../assets/pc.jpeg'
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.listProducts = [
-      {id: 1, title: 'Asus Rog', img: cardImage, proc: 'core i7', memory: 512, memoryType: 'SSD', ram: 32},
-      {id: 2, title: 'Acer', img: cardImage, proc: 'core i7', memory: 1024, memoryType: 'SSD', ram: 8},
-      {id: 3, title: 'Hp pavilion', img: cardImage, proc: 'core i7', memory: 100, memoryType: 'SSD', ram: 8},
-      {id: 4, title: 'MacBook', img: cardImage, proc: 'core i7', memory: 1000, memoryType: 'SSD', ram: 8},
+      {id: '1', name: 'Asus Rog', img: cardImage, cpu: 'core i7', storage: 512, memType: 'SSD', ram: 32, price: 2000},
+      {id: '2', name: 'Acer', img: cardImage, cpu: 'core i7', storage: 1024, memType: 'SSD', ram: 8, price: 1500},
+      {id: '3', name: 'Hp pavilion', img: cardImage, cpu: 'core i7', storage: 100, memType: 'SSD', ram: 8, price: 800},
+      {id: '4', name: 'MacBook', img: cardImage, cpu: 'core i7', storage: 1000, memType: 'SSD', ram: 8, price: 1900},
     ];
   }
 
