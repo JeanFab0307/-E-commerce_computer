@@ -64,9 +64,6 @@ const styles = StyleSheet.create({
   logo: {
     height: '75px'
   },
-  svg: {
-    fill: 'green',
-  }
 });
 
 export default Header;
