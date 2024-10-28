@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -50,7 +49,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: '400px',
     paddingLeft: '0px',
-    fill: 'green',
   },
   header: {
     display: 'flex',
