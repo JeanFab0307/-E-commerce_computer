@@ -9,14 +9,12 @@ class CartDrawer extends React.Component {
   }
 
   render() {
-    const { hideCartDrawer } = this.props
     return (
       <>
         <div className={css(styles.title)}>
           <h2>Cart</h2>
         </div>
         <button
-        onClick={() => hideCartDrawer()}
         className={css(styles.button)}
         >
           <Link className={css(styles.link)}to='/cart'>View Cart</Link>

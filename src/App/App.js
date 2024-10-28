@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
+import { connect } from 'react-redux'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
@@ -9,6 +10,8 @@ import CartDrawer from '../Cart/CartDrawer';
 import Cart from '../Cart/Cart';
 import ProductsPreview from '../Products/ProductPreview';
 import cardImage from '../assets/pc.jpeg'
+import { displayCartDrawer, hideCartDrawer } from '../actions/uiActionCreator';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,21 +23,15 @@ class App extends React.Component {
       {id: '4', name: 'MacBook', img: cardImage, cpu: 'core i7', storage: 1000, memType: 'SSD', ram: 8, price: 1900},
     ];
 
-    this.toogleDisplayCart = this.toogleDisplayCart.bind(this)
-
     this.state = {
       isLoggedIn: false,
-      displayDrawer: false,
     }
-  }
-
-  toogleDisplayCart() {
-    this.setState({displayDrawer: !this.state.displayDrawer})
   }
 
   render() {
     const {
             displayDrawer,
+            displayCartDrawer,
             hideCartDrawer,
             isLoggedIn,
           } = this.props;
@@ -44,7 +41,7 @@ class App extends React.Component {
         <Header/>
         {displayDrawer &&
         <div className={css(styles.cart)}>
-          <CartDrawer hideCartDrawer={hideCartDrawer}/>
+          <CartDrawer/>
         </div>}
         <div className={css(styles.body)}
         onClick={ displayDrawer ? (hideCartDrawer) : (() => {})}>
@@ -62,6 +59,7 @@ class App extends React.Component {
             <Route path='/cart' element={<Cart />}/>
           </Routes>
         </div>
+        <button onClick={displayCartDrawer}>Cart me</button>
         <Footer />
       </div>
   );
@@ -96,4 +94,13 @@ const styles = StyleSheet.create({
   },
 })
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    displayDrawer: state.get('isCartDrawerVisible')
+  };
+};
+const mapDispacthToProps = {
+  hideCartDrawer,
+  displayCartDrawer,
+}
+export default connect(mapStateToProps, mapDispacthToProps)(App);
