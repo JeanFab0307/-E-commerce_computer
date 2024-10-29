@@ -16,5 +16,13 @@ export const setProducts = (products) => {
 };
 
 export const fetchProducts = () => {
-  
+  return (dispatch) => {
+    dispatch(setLoadingState(true));
+
+    return fetch('http://localhost:8564/../../product.json')
+      .then((res) => res.json())
+      .then((data) => dispatch(setProducts(data)))
+      .catch((err) => console.log(err))
+      .finally(() => dispatch(setLoadingState(false)));
+  }
 }

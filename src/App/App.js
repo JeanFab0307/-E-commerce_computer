@@ -13,6 +13,7 @@ import ProductPage from '../Products/ProductPage';
 import ProductsPreview from '../Products/ProductPreview';
 import cardImage from '../assets/pc.jpeg'
 import { displayCartDrawer, hideCartDrawer } from '../actions/uiActionCreator';
+import { fetchProducts } from '../actions/productActionCreator';
 
 class App extends React.Component {
   constructor(props) {
@@ -30,11 +31,16 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
+
   render() {
     const {
             displayDrawer,
             hideCartDrawer,
             isLoggedIn,
+            products
           } = this.props;
 
     return (
@@ -51,7 +57,7 @@ class App extends React.Component {
             element={
               <>
               <div className={css(styles.card)}>
-                <ProductsPreview listProducts={this.listProducts}/>
+                <ProductsPreview listProducts={products}/>
               </div>
               </>
             }
@@ -98,11 +104,13 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    displayDrawer: state.ui.get('isCartDrawerVisible')
+    displayDrawer: state.ui.get('isCartDrawerVisible'),
+    products: state.products.get('products')
   };
 };
 const mapDispacthToProps = {
   hideCartDrawer,
   displayCartDrawer,
+  fetchProducts,
 }
 export default connect(mapStateToProps, mapDispacthToProps)(App);
