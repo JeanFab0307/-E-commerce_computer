@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_FETCH_SUCCESS, SET_LOADING_STATE } from "./cartActionType";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, SET_LOADING_STATE } from "./cartActionType";
 
 export const cartAddItem = (products) => {
   return {
@@ -19,14 +19,4 @@ export const setLoadingState = (loadingState) => {
     type: SET_LOADING_STATE,
     loadingState
   };
-};
-
-export const setCart = (data) => {
-  return {
-    type: CART_FETCH_SUCCESS,
-    data
-  };
-}
-
-export const fetchCartData = (user) => {
 };

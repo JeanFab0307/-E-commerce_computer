@@ -1,4 +1,5 @@
 import { FETCH_PRODUCTS_SUCCESS, SET_LOADING_STATE } from "./productActionType";
+import 'node-fetch';
 
 export const setLoadingState = (loadingState) => {
   return {
@@ -15,5 +16,5 @@ export const setProducts = (products) => {
 };
 
 export const fetchProducts = () => {
-
+  
 }
