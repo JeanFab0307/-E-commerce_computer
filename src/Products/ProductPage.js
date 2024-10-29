@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
-import { ProductItemShape } from './ProductItemShape';
 import { useParams } from 'react-router-dom';
 
 const ProductPage = ({ listProduct }) => {
   const { id } = useParams()
-  const product = listProduct.find((product) => product._id === id)
+  const product = listProduct.find((product) => product.id === id)
   return (
     <div className={css(styles.productContainer)}>
       <div>
-        <img className={css(styles.cardImage)} src='' alt='product'/>
+        <img className={css(styles.cardImage)} src={product.img} alt='product'/>
       </div>
       <div>
         <h1>Title {product.name}</h1>
@@ -30,11 +29,9 @@ const ProductPage = ({ listProduct }) => {
 }
 
 ProductPage.propTypes = {
-  listProduct: PropTypes.arrayOf(PropTypes.shape(ProductItemShape))
 }
 
 ProductPage.defaultProps = {
-  listProduct: [],
 }
   
 

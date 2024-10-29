@@ -9,6 +9,7 @@ import Login from '../Login/Login';
 import SignUp from '../Login/SignUp';
 import CartDrawer from '../Cart/CartDrawer';
 import Cart from '../Cart/Cart';
+import ProductPage from '../Products/ProductPage';
 import ProductsPreview from '../Products/ProductPreview';
 import cardImage from '../assets/pc.jpeg'
 import { displayCartDrawer, hideCartDrawer } from '../actions/uiActionCreator';
@@ -55,6 +56,7 @@ class App extends React.Component {
               </>
             }
             />
+            <Route path='/product/:id' element={<ProductPage listProduct={this.listProducts}/>}/>
             <Route path='/login' element={<Login />}/>
             <Route path='/signup' element={<SignUp />}/>
             <Route path='/cart' element={<Cart />}/>
