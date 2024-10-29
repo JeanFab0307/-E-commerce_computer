@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
+import SignUp from '../Login/SignUp';
 import CartDrawer from '../Cart/CartDrawer';
 import Cart from '../Cart/Cart';
 import ProductsPreview from '../Products/ProductPreview';
@@ -57,6 +58,7 @@ class App extends React.Component {
             />
             <Route path='/login' element={<Login />}/>
             <Route path='/cart' element={<Cart />}/>
+            <Route path='/signup' element={<SignUp />}/>
           </Routes>
         </div>
         <button onClick={displayCartDrawer}>Cart me</button>

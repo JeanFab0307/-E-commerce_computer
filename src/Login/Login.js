@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props) {
@@ -38,6 +38,7 @@ class Login extends React.Component {
 
   render() {
     return (
+      <>
         <div className={css(styles.login)}>
           <p>Login to access full functionality:</p>
           <form className={css(styles.login)}>
@@ -68,6 +69,12 @@ class Login extends React.Component {
               />
           </form>
         </div>
+        <div>
+        <p>
+          No Account yet? <Link to='/signup'>Sign Up</Link>
+        </p>
+      </div>
+    </>
     );
   }
 }
