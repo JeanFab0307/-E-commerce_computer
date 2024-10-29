@@ -27,7 +27,7 @@ NavItem.proptypes = {
 };
 
 NavItem.defaultProps = {
-  to: '/',
+  to: null,
   children: <></>,
   action: () => {},
 };

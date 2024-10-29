@@ -33,7 +33,7 @@ class Header extends React.Component {
               <NavItem to='/' children={<SvgSearch />}/>
               <NavItem to='/' children={<SvgHome />}/>
               <NavItem to={isLoggedIn ? '/profil' : '/login'} children={<SvgProfil />} />
-              <NavItem action={displayCartDrawer} to='' children={<SvgCart />}/>
+              <NavItem action={displayCartDrawer}  children={<SvgCart />}/>
             </ul>
           </nav>
         </div>
