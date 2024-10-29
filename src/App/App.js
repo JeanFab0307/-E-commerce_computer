@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    displayDrawer: state.get('isCartDrawerVisible')
+    displayDrawer: state.ui.get('isCartDrawerVisible')
   };
 };
 const mapDispacthToProps = {

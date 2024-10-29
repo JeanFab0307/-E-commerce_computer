@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.get('isUserLoggedIn'),
+    isLoggedIn: state.ui.get('isUserLoggedIn'),
   };
 };
 

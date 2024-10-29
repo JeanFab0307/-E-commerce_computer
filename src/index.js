@@ -5,11 +5,20 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import {
   createStore,
+  applyMiddleware,
+  compose,
+  combineReducers,
 } from 'redux';
-import { Map } from 'immutable';
-import { uiReducer, initialStateUi } from './reducers/uiReducer';
+import thunk from 'redux-thunk';
+import { initialState, rootReducer } from './reducers/rootReducer';
 
-const store = createStore(uiReducer, Map(initialStateUi));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  combineReducers(rootReducer),
+  initialState,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
   <Provider store={store}>
