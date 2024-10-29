@@ -32,17 +32,16 @@ class App extends React.Component {
   render() {
     const {
             displayDrawer,
-            displayCartDrawer,
             hideCartDrawer,
             isLoggedIn,
           } = this.props;
 
     return (
       <div className={css(styles.app)}>
-        <Header/>
+        <Header />
         {displayDrawer &&
         <div className={css(styles.cart)}>
-          <CartDrawer/>
+          <CartDrawer />
         </div>}
         <div className={css(styles.body)}
         onClick={ displayDrawer ? (hideCartDrawer) : (() => {})}>
@@ -57,15 +56,14 @@ class App extends React.Component {
             }
             />
             <Route path='/login' element={<Login />}/>
-            <Route path='/cart' element={<Cart />}/>
             <Route path='/signup' element={<SignUp />}/>
+            <Route path='/cart' element={<Cart />}/>
           </Routes>
         </div>
-        <button onClick={displayCartDrawer}>Cart me</button>
         <Footer />
       </div>
-  );
-}
+    );
+  }
 }
 
 const styles = StyleSheet.create({

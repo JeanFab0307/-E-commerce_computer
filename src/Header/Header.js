@@ -10,6 +10,8 @@ import {
   SvgProfil,
   SvgWishlist,
   SvgSearch} from '../SVG/svg';
+import { connect } from 'react-redux';
+import { displayCartDrawer } from '../actions/uiActionCreator';
 
 class Header extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class Header extends React.Component {
   }
 
   render() {
+    const {displayCartDrawer, isLoggedIn} = this.props;
     return (
       <div className={css(styles.header)}>
         <div>
@@ -27,11 +30,10 @@ class Header extends React.Component {
         <div>
           <nav>
             <ul className={css(styles.navBar)}>
-              {/* <NavItem to='/' children={<SvgSearch />}/> */}
+              <NavItem to='/' children={<SvgSearch />}/>
               <NavItem to='/' children={<SvgHome />}/>
-              <NavItem to='/login' children={<SvgProfil />} />
-              {/* <NavItem to='/' children={<SvgWishlist />}/> */}
-              <NavItem to='/cart' children={<SvgCart />}/>
+              <NavItem to={isLoggedIn ? '/profil' : '/login'} children={<SvgProfil />} />
+              <NavItem action={displayCartDrawer} to='' children={<SvgCart />}/>
             </ul>
           </nav>
         </div>
@@ -64,4 +66,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.get('isUserLoggedIn'),
+  };
+};
+
+const mapDispacthToProps = {
+  displayCartDrawer,
+}
+
+export default connect(mapStateToProps, mapDispacthToProps)(Header);

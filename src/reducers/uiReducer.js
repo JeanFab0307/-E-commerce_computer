@@ -6,7 +6,7 @@ import { Map } from 'immutable';
 
 export const initialStateUi = {
   isCartDrawerVisible : false,
-  IsUSerLoggedIn: false,
+  isUserLoggedIn: false,
   user: null,
 };
 

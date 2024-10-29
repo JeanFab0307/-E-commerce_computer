@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
+import { connect } from 'react-redux'
+import { hideCartDrawer } from '../actions/uiActionCreator';
 
 class CartDrawer extends React.Component {
   constructor(props) {
@@ -9,6 +11,7 @@ class CartDrawer extends React.Component {
   }
 
   render() {
+    const { hideCartDrawer } = this.props;
     return (
       <>
         <div className={css(styles.title)}>
@@ -16,6 +19,7 @@ class CartDrawer extends React.Component {
         </div>
         <button
         className={css(styles.button)}
+        onClick={hideCartDrawer}
         >
           <Link className={css(styles.link)}to='/cart'>View Cart</Link>
         </button>
@@ -50,4 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CartDrawer;
+const mapDispacthToProps = {
+  hideCartDrawer,
+}
+export default connect(null, mapDispacthToProps)(CartDrawer);
