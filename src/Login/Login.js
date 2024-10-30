@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loginRequest } from '../actions/uiActionCreator';
 
 class Login extends React.Component {
   constructor(props) {
@@ -13,21 +15,30 @@ class Login extends React.Component {
       email: "",
       password: "",
       enableSubmit: false,
+      redirectToProfile: false,
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.isLoggedIn && !prevProps.isLoggedIn) {
+      // Set redirect state to true upon successful login
+      this.setState({ redirectToProfile: true });
+    }
   }
 
   handleLoginSubmit(event) {
     event.preventDefault();
-    this.props.logIn(this.state.email, this.state.password);
+    this.props.loginRequest(this.state.email, this.state.password);
   }
   
   handleSubmitState() {
-    if (this.state.email !== "" && this.state.password !== ""){
-      this.setState({ enableSubmit: true})
+    if (this.state.email !== "" && this.state.password !== "") {
+      this.setState({ enableSubmit: true });
     } else {
-      this.setState({ enableSubmit: false})
+      this.setState({ enableSubmit: false });
     }
   }
+
   handleChangeEmail(event) {
     this.setState({ email: event.target.value }, this.handleSubmitState);
   }
@@ -37,11 +48,16 @@ class Login extends React.Component {
   }
 
   render() {
+    if (this.state.redirectToProfile) {
+      // Redirect to profile page after successful login
+      return <Navigate to="/profil" />;
+    }
+
     return (
       <>
         <div className={css(styles.login)}>
           <p>Login to access full functionality:</p>
-          <form className={css(styles.login)}>
+          <form className={css(styles.login)} onSubmit={this.handleLoginSubmit}>
             <label htmlFor='email'>Email: </label>
             <input 
               className={css(styles.textBox)}
@@ -50,35 +66,33 @@ class Login extends React.Component {
               id='email'
               onChange={this.handleChangeEmail}
               value={this.state.email}
-              />
+            />
             <label htmlFor='password'>Password: </label>
             <input
               className={css(styles.textBox)}
               type='password'
-              name='=password'
+              name='password'
               id='password'
               onChange={this.handleChangePassword}
               value={this.state.password}
-              />
+            />
             <input
               className={css(styles.submit)}
               type='submit'
               value='Sign In'
-              onClick={this.handleLoginSubmit}
               disabled={!this.state.enableSubmit}
-              />
+            />
           </form>
         </div>
         <div>
-        <p>
-          No Account yet? <Link to='/signup'>Sign Up</Link>
-        </p>
-      </div>
-    </>
+          <p>
+            No Account yet? <Link to='/signup'>Sign Up</Link>
+          </p>
+        </div>
+      </>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   login: {
@@ -99,4 +113,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.ui.get('isUserLoggedIn')
+  };
+};
+
+const mapDispatchToProps = {
+  loginRequest
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

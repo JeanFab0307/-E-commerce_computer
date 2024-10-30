@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
+import { connect } from 'react-redux'
 import ProductCard from './ProductCard';
-// import { ProductItemShape } from './ProductItemShape';
 import { Link } from 'react-router-dom';
+import { cartAddItem } from '../actions/cartActionCreator';
 
 class ProductsPreview extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class ProductsPreview extends React.Component {
   }
 
   render() {
-    const { listProducts } = this.props
+    const { listProducts, cartAddItem } = this.props
     return (
       <>
         {listProducts.map((product) => (
@@ -23,14 +24,14 @@ class ProductsPreview extends React.Component {
             </div>
           </Link>
         ))}
+        {/* <button onClick={() => cartAddItem({id: '1', name: 'Asus Rog', cpu: 'core i7', storage: 512, memType: 'SSD', ram: 32, price: 2000})}>
+          cartme
+        </button> */}
       </>
     );
   }
 }
 
-// ProductsPreview.propTypes = {
-//   listProducts: PropTypes.arrayOf(PropTypes.shape(ProductItemShape))
-// }
 
 const styles = StyleSheet.create({
   card: {
@@ -67,4 +68,7 @@ const styles = StyleSheet.create({
 },
 });
 
-export default ProductsPreview;
+const mapDispacthToProps = {
+  cartAddItem,
+}
+export default connect(null, mapDispacthToProps)(ProductsPreview);

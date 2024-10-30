@@ -11,7 +11,8 @@ import CartDrawer from '../Cart/CartDrawer';
 import Cart from '../Cart/Cart';
 import ProductPage from '../Products/ProductPage';
 import ProductsPreview from '../Products/ProductPreview';
-import cardImage from '../assets/pc.jpeg'
+import Profil from '../Profil/Profil';
+import cardImage from '../assets/pc.jpeg';
 import { displayCartDrawer, hideCartDrawer } from '../actions/uiActionCreator';
 import { fetchProducts } from '../actions/productActionCreator';
 
@@ -65,6 +66,7 @@ class App extends React.Component {
             <Route path='/product/:id' element={<ProductPage listProduct={this.listProducts}/>}/>
             <Route path='/login' element={<Login />}/>
             <Route path='/signup' element={<SignUp />}/>
+            <Route path='/profil' element={<Profil />}/>
             <Route path='/cart' element={<Cart />}/>
           </Routes>
         </div>

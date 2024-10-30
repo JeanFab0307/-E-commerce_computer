@@ -48,3 +48,16 @@ export const hideCartDrawer = () => {
     type: HIDE_CART_DRAWER
   };
 };
+
+export const loginRequest = (email, password) => {
+  return async (dispatch) => {
+    dispatch(login(email, password))
+    try {
+      const username = email.split('@')[0];
+      const user = { email, username };
+      return(dispatch(loginSuccess(user)));
+    } catch (error) {
+      return(dispatch(loginFailure()));
+    }
+  };
+};
