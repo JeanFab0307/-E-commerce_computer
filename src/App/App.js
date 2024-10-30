@@ -12,24 +12,12 @@ import Cart from '../Cart/Cart';
 import ProductPage from '../Products/ProductPage';
 import ProductsPreview from '../Products/ProductPreview';
 import Profil from '../Profil/Profil';
-import cardImage from '../assets/pc.jpeg';
 import { displayCartDrawer, hideCartDrawer } from '../actions/uiActionCreator';
 import { fetchProducts } from '../actions/productActionCreator';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.listProducts = [
-      {id: '1', name: 'Asus Rog', img: cardImage, cpu: 'core i7', storage: 512, memType: 'SSD', ram: 32, price: 2000},
-      {id: '2', name: 'Acer', img: cardImage, cpu: 'core i7', storage: 1024, memType: 'SSD', ram: 8, price: 1500},
-      {id: '3', name: 'Hp pavilion', img: cardImage, cpu: 'core i7', storage: 100, memType: 'SSD', ram: 8, price: 800},
-      {id: '4', name: 'MacBook', img: cardImage, cpu: 'core i7', storage: 1000, memType: 'SSD', ram: 8, price: 1900},
-    ];
-
-    this.state = {
-      isLoggedIn: false,
-    }
   }
 
   componentDidMount() {
@@ -40,7 +28,6 @@ class App extends React.Component {
     const {
             displayDrawer,
             hideCartDrawer,
-            isLoggedIn,
             products
           } = this.props;
 
@@ -58,12 +45,12 @@ class App extends React.Component {
             element={
               <>
               <div className={css(styles.card)}>
-                <ProductsPreview listProducts={products}/>
+                <ProductsPreview listProducts={products.slice(0, 20)}/>
               </div>
               </>
             }
             />
-            <Route path='/product/:id' element={<ProductPage listProduct={this.listProducts}/>}/>
+            <Route path='/product/:id' element={<ProductPage listProduct={products}/>}/>
             <Route path='/login' element={<Login />}/>
             <Route path='/signup' element={<SignUp />}/>
             <Route path='/profil' element={<Profil />}/>
