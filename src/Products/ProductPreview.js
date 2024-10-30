@@ -23,10 +23,10 @@ class ProductsPreview extends React.Component {
               />
             </div>
           </Link>
-        ))}
-        {/* <button onClick={() => cartAddItem({id: '1', name: 'Asus Rog', cpu: 'core i7', storage: 512, memType: 'SSD', ram: 32, price: 2000})}>
-          cartme
-        </button> */}
+          // <button onClick={() => cartAddItem(product)}>
+          // cartme
+          // </button> 
+        ))} 
       </>
     );
   }

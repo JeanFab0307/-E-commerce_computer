@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     borderRadius: '10px',
     objectFit: 'contain',
     width: '100%',
+    height: '200px'
 
   },
   title: {

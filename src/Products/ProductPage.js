@@ -9,20 +9,25 @@ const ProductPage = ({ listProduct }) => {
   return (
     <div className={css(styles.productContainer)}>
       <div>
-        <img className={css(styles.cardImage)} src={product.img} alt='product'/>
+        <img className={css(styles.image)} src={product.img} alt='product'/>
       </div>
       <div>
-        <h1>Title {product.name}</h1>
+        <h1>{product.name}</h1>
         <p>Price: {product.price} $</p>
         <div>
           <button>-</button>
           <label>1</label>
           <button>+</button>
         </div>
-        <button className={css(styles.button)}>Add to Cart</button>
         <h2>Description</h2>
-        <p>{product.description}</p>
-        <table></table>
+        <p>{product.shortDescription}</p>
+        <p>{product.shortDescription}</p>
+        <p>CPU: {product.CPU}</p>
+        <p>Storage: {product.memoryCapacity} {product.memoryType}</p>
+        <p>RAM: {product.ram} {product.type}</p>
+        <p>Screen Size: {product.ScreenSize} inches</p>
+        <p>Full Description: {product.longDescription}</p>
+        <button className={css(styles.button)}>Add to Cart</button>
       </div>
     </div>
   );
@@ -43,16 +48,16 @@ const styles = StyleSheet.create({
     padding: '20px',
     maxWidth: '1200px',
     margin: 'auto',
+    gap: '50px'
   },
   image: {
-    maxWidth: '100%',
+   width: '50vw',
     height: 'auto',
   },
   details: {
     marginLeft: '40px',
   },
   button: {
-    position: 'absolute',
     bottom: '20px',
     borderRadius: '30px',
     fontWeight: 'bold',
@@ -63,7 +68,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontStyle: 'normal',
-    left: '20px'
+    left: '20px',
+    gap: '60px'
   },
 });
 

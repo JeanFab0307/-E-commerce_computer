@@ -9,7 +9,8 @@ export const initialStateCarts = {
 export const cartsReducer = (state = Map(initialStateCarts), action) => {
   switch (action.type) {
     case CART_ADD_ITEM: {
-      const { products, user = null } = action;  // Destructure user with default null
+      const user = null;
+      const data = action.products.map((product) => ({...product,}) )
       const currentCart = state.get('cart');
 
       const updatedCart = products.map((productId) => {
