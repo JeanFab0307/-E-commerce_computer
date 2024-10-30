@@ -9,53 +9,50 @@ export const initialStateCarts = {
 export const cartsReducer = (state = Map(initialStateCarts), action) => {
   switch (action.type) {
     case CART_ADD_ITEM: {
-      const user = null;
-      const data = action.products.map((product) => ({...product,}) )
+      const { user = null, products } = action;  // `products` is a single product ID
       const currentCart = state.get('cart');
-
-      const updatedCart = products.map((productId) => {
-        const existingProductIndex = currentCart.findIndex((item) => item.product.id === productId);
-
-        if (existingProductIndex !== -1) {
-          // Product exists, increase count
-          const updatedProduct = {
-            ...currentCart[existingProductIndex],
+    
+      // Check if the product already exists in the cart
+      const updatedCart = currentCart.map((item) => {
+        if (item.product.id === products) {
+          // Increase count by 1 if the product already exists in the cart
+          return {
+            user,
             product: {
-              ...currentCart[existingProductIndex].product,
-              count: currentCart[existingProductIndex].product.count + 1
+              id: item.product.id,
+              count: item.product.count + 1
             }
           };
-          return updatedProduct;
-        } else {
-          // Product does not exist, create a new entry with count = 1
-          const newProductEntry = {
-            product: {
-              id: productId,
-              count: 1
-            }
-          };
-
-          // Conditionally add user data only if provided
-          if (user) {
-            newProductEntry.user = user;
-          }
-
-          return newProductEntry;
         }
+        return item; // Return unchanged items
       });
-
-      // Return updated state with new cart array
+    
+      // Check if the product was not found in the cart, and if so, add it
+      const productExistsInCart = currentCart.some((item) => item.product.id === products);
+    
+      if (!productExistsInCart) {
+        updatedCart.push({
+          user,
+          product: {
+            id: products,
+            count: 1 // New product added with an initial count of 1
+          }
+        });
+      }
+    
       return state.set('cart', updatedCart);
     }
+    
     case CART_REMOVE_ITEM: {
-      const { user = null, products } = action;
+      const { user = null, products } = action;  // `products` is a single product ID
       const currentCart = state.get('cart');
-
+    
+      // Update cart by mapping over existing items
       const updatedCart = currentCart.map((item) => {
-        if (products.includes(item.product.id)) {
+        if (item.product.id === products) {  // Check if the current item matches the product ID
           // Decrease count if product is in the cart
           const updatedCount = item.product.count - 1;
-
+    
           if (updatedCount > 0) {
             // Return updated product with decreased count
             return {
@@ -66,18 +63,15 @@ export const cartsReducer = (state = Map(initialStateCarts), action) => {
               }
             };
           }
-          // Else, exclude product from cart (filter it out)
+          // Else, exclude product from cart (set to null to filter out later)
           return null;
         }
         return item; // Return unchanged items
       }).filter(Boolean); // Filter out nulls where count reaches zero
-
+    
       return state.set('cart', updatedCart);
     }
-    case SET_LOADING_STATE: {
-      return state.set('loading', action.loadingState);
-    }
-    default: 
+  default: 
     return state;
   }
 }

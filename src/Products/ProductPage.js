@@ -15,12 +15,11 @@ const ProductPage = ({ listProduct }) => {
         <h1>{product.name}</h1>
         <p>Price: {product.price} $</p>
         <div>
-          <button>-</button>
+          {/* <button>-</button>
           <label>1</label>
-          <button>+</button>
+          <button>+</button> */}
         </div>
         <h2>Description</h2>
-        <p>{product.shortDescription}</p>
         <p>{product.shortDescription}</p>
         <p>CPU: {product.CPU}</p>
         <p>Storage: {product.memoryCapacity} {product.memoryType}</p>
